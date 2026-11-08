@@ -1,0 +1,119 @@
+/* Tela cheia, sem header: centraliza o cartão */
+.page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* Duas colunas: marca à esquerda, formulário à direita */
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+
+  width: 100%;
+  max-width: 640px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Faixa com as cores do logo no topo do cartão */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, #0b7a3b 0 33%, #e01b1b 33% 66%, #f7b500 66%);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  flex: 0 0 250px;
+  padding: 36px 24px;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface-hover);
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  width: 96px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.brandName {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.brandTag {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+
+  flex: 1;
+  min-width: 0;
+  padding: 36px 32px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Celulares: empilha marca em cima e formulário embaixo */
+@media (max-width: 560px) {
+  .card {
+    flex-direction: column;
+    max-width: 400px;
+  }
+
+  .brand {
+    flex-basis: auto;
+    padding: 28px 20px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .logo {
+    width: 72px;
+    margin-bottom: 4px;
+  }
+
+  .brandName {
+    font-size: 22px;
+  }
+
+  .fields {
+    padding: 24px 20px;
+  }
+}

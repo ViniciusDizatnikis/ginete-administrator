@@ -1,0 +1,62 @@
+
+/* Tema claro (padrão) */
+:root {
+    --color-bg: #f6f7f9;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f0f2f5;
+    --color-surface-selected: #f9f9fa;
+    --color-border: #dfe3e8;
+    --color-text: #1d2330;
+    --color-text-muted: #6b7380;
+    --color-primary: #2f6fed;
+    --color-primary-hover: #2559c4;
+    --color-on-primary: #ffffff;
+    --color-success: #1f9d55;
+    --color-warning: #b7791f;
+    --color-danger: #d64545;
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.1);
+
+    color-scheme: light;
+}
+
+/* Tema escuro: escolhido manualmente */
+[data-theme="dark"] {
+    --color-bg: #14171c;
+    --color-surface: #1c2027;
+    --color-surface-hover: #252a33;
+    --color-surface-selected: #373c46;
+    --color-border: #2c323c;
+    --color-text: #e3e6eb;
+    --color-text-muted: #8a93a1;
+    --color-primary: #5b8ff9;
+    --color-primary-hover: #7aa5ff;
+    --color-on-primary: #0d1117;
+    --color-success: #3fbf7f;
+    --color-warning: #e0a443;
+    --color-danger: #ef6b6b;
+    --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.5);
+
+    color-scheme: dark;
+}
+
+/* Tema escuro automático: segue o sistema operacional */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --color-bg: #14171c;
+        --color-surface: #1c2027;
+        --color-surface-hover: #252a33;
+        --color-surface-selected: #373c46;
+        --color-border: #2c323c;
+        --color-text: #e3e6eb;
+        --color-text-muted: #8a93a1;
+        --color-primary: #5b8ff9;
+        --color-primary-hover: #7aa5ff;
+        --color-on-primary: #0d1117;
+        --color-success: #3fbf7f;
+        --color-warning: #e0a443;
+        --color-danger: #ef6b6b;
+        --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.5);
+
+        color-scheme: dark;
+    }
+}

@@ -1,0 +1,59 @@
+/* Ocupa a área do <main> abaixo do header (descontando o padding de 24px dele) */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: safe center;
+  gap: 24px;
+
+  width: 100%;
+  min-height: calc(100dvh - var(--header-height) - 48px);
+  text-align: center;
+}
+
+.imageNotFound {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.message {
+  color: var(--color-text-muted);
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .container {
+    gap: 16px;
+  }
+
+  .imageNotFound {
+    max-width: 280px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .imageNotFound {
+    max-width: 340px;
+  }
+}
+
+/* No mobile o <main> usa padding de 16px */
+@media (max-width: 640px) {
+  .container {
+    min-height: calc(100dvh - var(--header-height) - 32px);
+  }
+}
