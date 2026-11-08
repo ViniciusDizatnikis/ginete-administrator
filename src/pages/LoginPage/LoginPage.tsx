@@ -35,7 +35,6 @@ const LoginPage = () => {
     mutationFn: () => login(username.trim(), password),
   });
 
-  // Já logado (ou acabou de logar): segue para o painel
   if (user) {
     return <Navigate to={from} replace />;
   }

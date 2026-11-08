@@ -1,33 +1,75 @@
-import { LogOut, Music2 } from "lucide-react";
+import { useEffect, useId, useState } from "react";
+import { Menu, X } from "lucide-react";
 import { Link, Outlet } from "react-router";
 
-import { useAuth } from "@/hooks/useAuth";
+import SideBarMenu from "../SideBarMenu/SideBarMenu";
+import UserMenu from "../UserMenu/UserMenu";
 import styles from "./styles.module.css";
 
+import Logo from "@/assets/images/Logo.png";
+
 const AdminLayout = () => {
-  const { user, logout } = useAuth();
+  // Gaveta do menu lateral (só usada no celular)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const sidebarId = useId();
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
       <header className={styles.header}>
-        <Link to="/" className={styles.brand}>
-          <Music2 aria-hidden size={22} />
-          <span className={styles.brandName}>Ginete</span>
-        </Link>
+        <div className={styles.start}>
+          <button
+            type="button"
+            className={`btn btn-sm ${styles.menuButton}`}
+            aria-expanded={menuOpen}
+            aria-controls={sidebarId}
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? (
+              <X aria-hidden size={18} />
+            ) : (
+              <Menu aria-hidden size={18} />
+            )}
+          </button>
+
+          <Link to="/" className={styles.brand} onClick={closeMenu}>
+            <img src={Logo} alt="" className={styles.brandLogo} />
+            <span className={styles.brandName}>Ginete</span>
+          </Link>
+        </div>
 
         <div className={styles.end}>
-          {user && <span className={styles.user}>{user.username}</span>}
-          <button type="button" className="btn btn-sm" onClick={logout}>
-            <LogOut aria-hidden size={14} />
-            Sair
-          </button>
+          <UserMenu />
         </div>
       </header>
 
-      {/* Aqui o React Router encaixa a tela da rota filha */}
-      <main className={styles.main}>
-        <Outlet />
-      </main>
+      <div className={styles.body}>
+        <SideBarMenu id={sidebarId} open={menuOpen} onNavigate={closeMenu} />
+        {menuOpen && (
+          <div className={styles.backdrop} aria-hidden onClick={closeMenu} />
+        )}
+
+        <main className={styles.main}>
+          <Outlet />
+        </main>
+      </div>
     </>
   );
 };
