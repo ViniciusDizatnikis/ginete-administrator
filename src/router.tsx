@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AdminLayout from "./components/layout/AdminLayout/AdminLayout";
+import HomePage from "./pages/HomePage/HomePage";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         element: <AdminLayout />,
         children: [
+          {
+            path: "/",
+            element: <HomePage />,
+          },
           {
             path: "*",
             element: <NotFoundPage />,
